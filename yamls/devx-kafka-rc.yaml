@@ -1,0 +1,29 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: devx-kafka-pod
+  namespace: devx
+spec:
+  template:
+    metadata:
+      labels:
+        app: devx-kafka-messagebus
+    spec:
+      containers:
+       - name: devx-kafka
+         image: spotify/kafka:latest
+         env:
+         - name: TOPICS
+           value: "ruleChangeTrigger:1:1,test:1:1"
+         - name: ADVERTISED_PORT
+           value: "9092"
+         - name: ADVERTISED_HOST
+           value: "192.168.99.100"
+
+         resources:
+           requests:
+             cpu: 125m
+             memory: 256Mi
+           limits:
+             #cpu: 500m
+             memory: 512Mi

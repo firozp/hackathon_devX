@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: parser
+  namespace: devx
+  labels:
+    io.kompose.service: parser
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        io.kompose.service: parser
+    spec:
+      containers:
+      - image: devx/rulesparser:v1
+        name: web
+        ports:
+        - containerPort: 8080
+        imagePullPolicy: IfNotPresent
+      restartPolicy: Always

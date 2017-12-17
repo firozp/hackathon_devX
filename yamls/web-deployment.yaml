@@ -1,0 +1,22 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: web
+  namespace: devx
+  labels:
+    io.kompose.service: web
+spec:
+  replicas: 3
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.service: web
+    spec:
+      containers:
+      - image: ruleswebserver
+        name: web
+        ports:
+        - containerPort: 8080
+        imagePullPolicy: IfNotPresent
+      restartPolicy: Always

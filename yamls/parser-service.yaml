@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: parser
+  namespace: devx
+  labels:
+    io.kompose.service: parser
+spec:
+  ports:
+  - name: "8090"
+    port: 8090
+    targetPort: 8080
+  selector:
+    io.kompose.service: parser
+  type: NodePort
